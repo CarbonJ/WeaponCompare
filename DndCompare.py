@@ -16,6 +16,12 @@ class weapon():
         self.numdice = numdice
         self.sides = sides
 
+    def attack():
+        #Return hit roll
+        pass
+    def damage():
+        pass
+
 # Concept Test
 weapon1 = weapon('Great Club',7,5,1,8)
 
