@@ -1,34 +1,38 @@
 #D&D 5 Weapon Compare
 #import random
+import os
 
-def menu():
-    try:
-        nwpns = int(input("How many weapons do you want to compare?\n"))
-        print('Will test {} weapons.\n'.format(nwpns))
-        wlist = []
-        for x in range(1,nwpns+1):
-            wpn = "wpn"+ str(x)
-            print(wpn)
-            wlist.append(wpn)
-            print(wlist)
-    except:
-        ValueError
-        print("You've entered and invalid value.")
-        menu()
+class Roller(object):
+    """"""
+    def __init__(self):
+        self.wlist = []
+        self.menu()
+
+    def buildweapon(self, x):
+        """"""
+        pass
+
+    def menu(self):
+        try:
+            nwpns = int(input("How many weapons do you want to compare?\n"))
+            print('Will test {} weapons.\n'.format(nwpns))
+            for x in range(1,nwpns+1):
+                wpn = "wpn"+ str(x)
+                self.wlist.append(wpn)
+                # TO DO: build weapon objects
+        except:
+            ValueError
+            print("You've entered and invalid value.")
 
 
-
-def weaponrolls():
-    pass
-
-
-class weapon():
+class weapon(object):
     def __init__(self, wtype, hit, dam, numdice, sides):
         self.wtype = wtype
         self.hit = hit
         self.dam = dam
         self.numdice = numdice
         self.sides = sides
+        print(self.wtype)
 
     def attack():
         #Return hit roll
@@ -36,8 +40,10 @@ class weapon():
     def damage():
         pass
 
+if __name__ == '__main__':
+    roller = Roller()
 
-menu()
+    print(roller.wlist)
 
 # Concept Test
 # weapon1 = weapon('Great Club',7,5,1,8)
