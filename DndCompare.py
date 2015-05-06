@@ -10,12 +10,11 @@ class Roller(object):
         self.wlist = []
         self.menu()
 
-    def buildweapon(self, wpn, details):
+    def buildweapon(self, wpnobj, details):
         """Build weapons"""
-        print(wpn, details)
-        wpn = weapon(*details)
-        print(wpn.dice)
-        #print(wpn)
+        print(wpnobj, details)
+        wpnobj = weapon(*details)
+        return(wpnobj)
 
 
     def menu(self):
@@ -28,9 +27,7 @@ class Roller(object):
                 self.wlist.append(wpn)
             for y in self.wlist:
                 details = input("Give a name, hit bonus, damage bonus, and dice (as #d#.) \n")
-                #print(details.split(','))
                 self.buildweapon(y, details.split(','))
-                # TO DO: build weapon objects
         except:
             ValueError
             print("You've entered and invalid value.")
@@ -51,7 +48,7 @@ class weapon(object):
 
 if __name__ == '__main__':
     roller = Roller()
-
+    print(roller.wlist)
 # Concept Test
 # weapon1 = weapon('Great Club',7,5,1,8)
 
