@@ -1,6 +1,8 @@
 #D&D 5 Weapon Compare
 #import random
-import os
+#import os
+# TO DO
+# - clear screen based on OS
 
 class Roller(object):
     """"""
@@ -8,17 +10,27 @@ class Roller(object):
         self.wlist = []
         self.menu()
 
-    def buildweapon(self, x):
-        """"""
-        pass
+    def buildweapon(self, wpn, details):
+        """Build weapons"""
+        print(wpn, details)
+        #wpn1 = weapon(details)
+        wpn1 = weapon(1,2,3,4)
+        print(wpn1)
+        #print(wpn)
+
 
     def menu(self):
+        """Interface with user"""
         try:
             nwpns = int(input("How many weapons do you want to compare?\n"))
             print('Will test {} weapons.\n'.format(nwpns))
             for x in range(1,nwpns+1):
                 wpn = "wpn"+ str(x)
                 self.wlist.append(wpn)
+            for y in self.wlist:
+                details = input("Give a name, hit bonus, damage bonus, and dice (as #d#.) \n")
+                #print(details.split(','))
+                self.buildweapon(y, details.split(','))
                 # TO DO: build weapon objects
         except:
             ValueError
@@ -26,13 +38,11 @@ class Roller(object):
 
 
 class weapon(object):
-    def __init__(self, wtype, hit, dam, numdice, sides):
+    def __init__(self, wtype, hit, dam, dice):
         self.wtype = wtype
         self.hit = hit
         self.dam = dam
-        self.numdice = numdice
-        self.sides = sides
-        print(self.wtype)
+        self.dice = dice
 
     def attack():
         #Return hit roll
@@ -42,8 +52,6 @@ class weapon(object):
 
 if __name__ == '__main__':
     roller = Roller()
-
-    print(roller.wlist)
 
 # Concept Test
 # weapon1 = weapon('Great Club',7,5,1,8)
