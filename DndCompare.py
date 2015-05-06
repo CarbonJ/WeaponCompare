@@ -5,23 +5,32 @@
 # - clear screen based on OS
 
 class Roller(object):
-    """"""
+    """
+    Build and manager roller
+    """
     def __init__(self):
-        self.wlist = []
+        self.allweapons = []
         self.menu()
 
     def buildweapon(self, wpnobj, details):
-        """Build weapons"""
+        """
+        Build weapons
+        """
         print(wpnobj, details)
         wpnobj = weapon(*details)
+        self.allweapons.append(wpnobj)
         return(wpnobj)
 
 
     def menu(self):
-        """Interface with user"""
+        """
+        Interface with user
+        Get number of weapons and weapon details
+        """
         try:
             nwpns = int(input("How many weapons do you want to compare?\n"))
             print('Will test {} weapons.\n'.format(nwpns))
+            self.wlist = []
             for x in range(1,nwpns+1):
                 wpn = "wpn"+ str(x)
                 self.wlist.append(wpn)
@@ -40,15 +49,21 @@ class weapon(object):
         self.dam = dam
         self.dice = dice
 
-    def attack():
+    def attack(target):
         #Return hit roll
         pass
     def damage():
+        #Return damage
         pass
+
+def combatsimulator():
+    pass
 
 if __name__ == '__main__':
     roller = Roller()
-    print(roller.wlist)
+    print(roller.allweapons)
+    for y in roller.allweapons:
+        print(y.wtype)
 # Concept Test
 # weapon1 = weapon('Great Club',7,5,1,8)
 
