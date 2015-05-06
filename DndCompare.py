@@ -13,9 +13,8 @@ class Roller(object):
     def buildweapon(self, wpn, details):
         """Build weapons"""
         print(wpn, details)
-        #wpn1 = weapon(details)
-        wpn1 = weapon(1,2,3,4)
-        print(wpn1)
+        wpn = weapon(*details)
+        print(wpn.dice)
         #print(wpn)
 
 
