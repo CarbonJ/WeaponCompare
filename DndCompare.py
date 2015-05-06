@@ -16,11 +16,10 @@ class Roller(object):
         """
         Build weapons
         """
-        print(wpnobj, details)
+        #print(wpnobj, details)
         wpnobj = weapon(*details)
         self.allweapons.append(wpnobj)
         return(wpnobj)
-
 
     def menu(self):
         """
@@ -56,14 +55,14 @@ class weapon(object):
         #Return damage
         pass
 
-def combatsimulator():
+def combatsimulator(rounds):
+    for x in range(0,rounds):
+        print(x)
     pass
 
 if __name__ == '__main__':
     roller = Roller()
-    print(roller.allweapons)
-    for y in roller.allweapons:
-        print(y.wtype)
+    combatsimulator(5)
 # Concept Test
 # weapon1 = weapon('Great Club',7,5,1,8)
 
