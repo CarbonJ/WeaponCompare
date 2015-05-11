@@ -4,28 +4,17 @@
 # TO DO
 # - clear screen based on OS
 
-class Roller(object):
-    """
-    Build and manager roller
-    """
+class Manger(object):
     def __init__(self):
         self.allweapons = []
         self.menu()
 
     def buildweapon(self, wpnobj, details):
-        """
-        Build weapons
-        """
-        #print(wpnobj, details)
         wpnobj = weapon(*details)
         self.allweapons.append(wpnobj)
         return(wpnobj)
 
     def menu(self):
-        """
-        Interface with user
-        Get number of weapons and weapon details
-        """
         try:
             nwpns = int(input("How many weapons do you want to compare?\n"))
             print('Will test {} weapons.\n'.format(nwpns))
@@ -44,8 +33,8 @@ class Roller(object):
 class weapon(object):
     def __init__(self, wtype, hit, dam, dice):
         self.wtype = wtype
-        self.hit = hit
-        self.dam = dam
+        self.hit = int(hit)
+        self.dam = int(dam)
         self.dice = dice
 
     def attack(target):
@@ -53,16 +42,24 @@ class weapon(object):
         pass
     def damage():
         #Return damage
+        #print(wpnobj.dice.split('d', 1))
         pass
 
-def combatsimulator(rounds):
-    for x in range(0,rounds):
-        print(x)
+def combatsimulator(weaponlist, rounds, maxac):
+    for w2test in weaponlist:
+        print(w2test)
+        for x in range(10, maxac + 1):
+            if x <= w2test.hit:
+                print('hit')
+            else:
+                print('miss')
+        #for x in range(0,rounds):
+            #print(x)
     pass
 
 if __name__ == '__main__':
-    roller = Roller()
-    combatsimulator(5)
+    manger = Manger()
+    combatsimulator(manger.allweapons, 5, 30)
 # Concept Test
 # weapon1 = weapon('Great Club',7,5,1,8)
 
