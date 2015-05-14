@@ -1,5 +1,5 @@
 #D&D 5 Weapon Compare
-#import random
+import random
 #import os
 # TO DO
 # - clear screen based on OS
@@ -19,8 +19,8 @@ class Manger(object):
             nwpns = int(input("How many weapons do you want to compare?\n"))
             print('Will test {} weapons.\n'.format(nwpns))
             self.wlist = []
-            for x in range(1,nwpns+1):
-                wpn = "wpn"+ str(x)
+            for x in range(1, nwpns + 1):
+                wpn = "wpn" + str(x)
                 self.wlist.append(wpn)
             for y in self.wlist:
                 details = input("Give a name, hit bonus, damage bonus, and dice (as #d#.) \n")
@@ -37,50 +37,43 @@ class weapon(object):
         self.dam = int(dam)
         self.dice = dice
 
-    def attack(target):
-        #Return hit roll
-        pass
-    def damage():
+        self.results = []
+
+    def damage(self):
         #Return damage
         #print(wpnobj.dice.split('d', 1))
         pass
 
 def combatsimulator(weaponlist, rounds, maxac):
     for w2test in weaponlist:
-        print(w2test)
-        for x in range(10, maxac + 1):
-            if x <= w2test.hit:
-                print('hit')
-            else:
-                print('miss')
-        #for x in range(0,rounds):
-            #print(x)
-    pass
+        print(w2test.wtype)
+        testhit = 0
+        testmiss = 0
+        testdam = 0
+        for acs in range(10, maxac + 1):
+            testhit = 0
+            testmiss = 0
+            testdam = 0
+            for rnd in range(rounds):
+                roll = random.randrange(1, 21) + w2test.hit
+                if acs <= roll:
+                    testhit = testhit +1
+                    start, end = w2test.dice.split('d', 1)
+                    damage = random.randrange(int(start), int(end) + 1) + w2test.dam
+                    testdam = testdam + damage
+                else:
+                    testmiss = testmiss +1
+            try:
+                print("For AC {}, Hits {}, Misses: {}, Total Dam: {}, Avg Dam: {:.2f}".format(acs, testhit, testmiss, testdam, round((testdam / testhit), 3)))
+            except:
+                print("For AC {}, Hits {}, Misses: {}, Total Dam: {}, Avg Dam: {:.2f}".format(acs, testhit, testmiss, testdam, 0))
+            try:
+                w2test.results.append((acs, testhit, testmiss, round((testdam / testhit), 3)))
+            except:
+                w2test.results.append((acs, testhit, testmiss, 0))
 
 if __name__ == '__main__':
     manger = Manger()
-    combatsimulator(manger.allweapons, 5, 30)
-# Concept Test
-# weapon1 = weapon('Great Club',7,5,1,8)
+    combatsimulator(manger.allweapons, 2000, 30)
 
-# target = 15
-# times = 100000
-# dcount = 0
-# numhits = 0
-# misscount = 0
 
-# for n in range(1,times):
-#     roll = random.randrange(1, 21) + weapon1.hit
-#     if roll >= target:
-#         damage = (weapon1.numdice * random.randrange(1, weapon1.sides)) + weapon1.dam
-#         dcount = dcount + damage
-#         numhits += 1
-#     else:
-#         misscount += 1
-
-# avgdam = round((dcount / numhits), 3)
-# avgmis = round((misscount / times), 3)* 100
-# print("Against an AC of {}".format(target))
-# print("The {} did an average of {} points of damage.".format(weapon1.wtype, avgdam))
-# print("The {} missed {} percent of the time.".format(weapon1.wtype, avgmis))
-# print("")
