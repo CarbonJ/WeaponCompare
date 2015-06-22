@@ -56,7 +56,7 @@ def combatsimulator(weaponlist, rounds, maxac):
             testdam = 0
             for rnd in range(rounds):
                 roll = random.randrange(1, 21) + w2test.hit
-                if acs <= roll:
+                if acs <= roll or roll == 20:
                     testhit = testhit +1
                     start, end = w2test.dice.split('d', 1)
                     damage = random.randrange(int(start), int(end) + 1) + w2test.dam
@@ -64,16 +64,16 @@ def combatsimulator(weaponlist, rounds, maxac):
                 else:
                     testmiss = testmiss +1
             try:
-                print("For AC {}, Hits {}, Misses: {}, Total Dam: {}, Avg Dam: {:.2f}".format(acs, testhit, testmiss, testdam, round((testdam / testhit), 3)))
+                print("For AC {}, Hits {}, Misses: {}, Total Dam: {}, Avg Dam: {:.2f}".format(acs, testhit, testmiss, testdam, round((testdam / testhit), 2)))
             except:
                 print("For AC {}, Hits {}, Misses: {}, Total Dam: {}, Avg Dam: {:.2f}".format(acs, testhit, testmiss, testdam, 0))
             try:
-                w2test.results.append((acs, testhit, testmiss, round((testdam / testhit), 3)))
+                w2test.results.append((acs, testhit, testmiss, round((testdam / testhit), 2)))
             except:
                 w2test.results.append((acs, testhit, testmiss, 0))
 
 if __name__ == '__main__':
     manger = Manger()
-    combatsimulator(manger.allweapons, 2000, 30)
+    combatsimulator(manger.allweapons, 50000, 30)
 
 
