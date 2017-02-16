@@ -1,8 +1,9 @@
-#D&D 5 Weapon Compare
+# D&D 5 Weapon Comparison
 import random
-#import os
+# import os
 # TO DO
 # - clear screen based on OS
+
 
 class Manger(object):
     def __init__(self):
@@ -40,9 +41,10 @@ class weapon(object):
         self.results = []
 
     def damage(self):
-        #Return damage
-        #print(wpnobj.dice.split('d', 1))
+        # Return damage
+        # print(wpnobj.dice.split('d', 1))
         pass
+
 
 def combatsimulator(weaponlist, rounds, maxac):
     for w2test in weaponlist:
@@ -57,23 +59,22 @@ def combatsimulator(weaponlist, rounds, maxac):
             for rnd in range(rounds):
                 roll = random.randrange(1, 21) + w2test.hit
                 if acs <= roll or roll == 20:
-                    testhit = testhit +1
+                    testhit = testhit + 1
                     start, end = w2test.dice.split('d', 1)
                     damage = random.randrange(int(start), int(end) + 1) + w2test.dam
                     testdam = testdam + damage
                 else:
-                    testmiss = testmiss +1
+                    testmiss = testmiss + 1
             try:
                 print("For AC {}, Hits {}, Misses: {}, Total Dam: {}, Avg Dam: {:.2f}".format(acs, testhit, testmiss, testdam, round((testdam / testhit), 2)))
             except:
                 print("For AC {}, Hits {}, Misses: {}, Total Dam: {}, Avg Dam: {:.2f}".format(acs, testhit, testmiss, testdam, 0))
             try:
-                w2test.results.append((acs, testhit, testmiss, round((testdam / testhit), 2)))
+                w2test.results.append((acs, testhit, testmiss,
+                                       round((testdam / testhit), 2)))
             except:
                 w2test.results.append((acs, testhit, testmiss, 0))
 
 if __name__ == '__main__':
     manger = Manger()
     combatsimulator(manger.allweapons, 50000, 30)
-
-
